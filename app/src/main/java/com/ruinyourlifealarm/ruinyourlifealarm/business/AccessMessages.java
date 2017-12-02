@@ -16,7 +16,7 @@ public class AccessMessages {
         this.database = database;
     }
 
-    public void createMessage(String messageName) {
+    public void createCustomMessage(String messageName) {
         database.createMessage(messageName);
     }
 

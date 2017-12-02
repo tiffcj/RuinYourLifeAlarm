@@ -18,15 +18,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "ruinYourLifeAlarm";
 
-    //Messages table
+    //Messages table table/column names
     private static final String TABLE_MESSAGES = "MESSAGES";
     private static final String KEY_MESSAGES_ID = "ID";
     private static final String KEY_MESSAGES_NAME = "NAME";
 
-    //Alarms table
+    //Alarms table table/column names
     private static final String TABLE_ALARMS = "ALARMS";
     private static final String KEY_ALARMS_ID = "ID";
-    private static final String KEY_ALARMS_MESSAGE_ID = "MESSAGE ID";
+    private static final String KEY_ALARMS_MESSAGE_ID = "MESSAGE_ID";
     private static final String KEY_ALARMS_RECIPIENT_PHONE_NUMBER = "RECIPIENT_PHONE_NUMBER";
     private static final String KEY_ALARMS_ALARM_TIME = "ALARM_TIME";
 
@@ -36,11 +36,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_MESSAGES_TABLE = "CREATE TABLE MESSAGES (ID INTEGER PRIMARY KEY, NAME TEXT)";
-        String CREATE_ALARMS_TABLE = "CREATE TABLE ALARMS (ID INTEGER PRIMARY KEY, ALARM_TIME TIME, MESSAGE_ID INTEGER, RECIPIENT_PHONE_NUMBER TEXT, CONSTRAINT FK_ALARMS_MESSAGES FOREIGN KEY(MESSAGE_ID) REFERENCES MESSAGES(ID))";
+        String CREATE_MESSAGES_TABLE = "CREATE TABLE " + TABLE_MESSAGES + " (" + KEY_MESSAGES_ID + " INTEGER PRIMARY KEY, " + KEY_MESSAGES_NAME + " TEXT)";
+        String CREATE_ALARMS_TABLE = "CREATE TABLE " + TABLE_ALARMS + " (" + KEY_ALARMS_ID + " INTEGER PRIMARY KEY, " + KEY_ALARMS_ALARM_TIME + " TIME, " + KEY_ALARMS_MESSAGE_ID + " INTEGER, " + KEY_ALARMS_RECIPIENT_PHONE_NUMBER + " TEXT, " + "CONSTRAINT FK_" + TABLE_ALARMS + "_" + TABLE_MESSAGES + " FOREIGN KEY(" + KEY_ALARMS_MESSAGE_ID + ") REFERENCES " + TABLE_MESSAGES + "(" + KEY_MESSAGES_ID + "))";
 
         db.execSQL(CREATE_MESSAGES_TABLE);
         db.execSQL(CREATE_ALARMS_TABLE);
+
+        //Inserting default messages to start
+        db.execSQL(getInsertMessageCmd(1, "I just had 6 tequila shots"));
+        db.execSQL(getInsertMessageCmd(2, "I paid for WinRAR"));
+        db.execSQL(getInsertMessageCmd(3, "I kick puppies in my spare time"));
+        db.execSQL(getInsertMessageCmd(4, "I just pirated 7 movies"));
+    }
+
+    private String getInsertMessageCmd(int id, String msg) {
+        return "INSERT INTO " + TABLE_MESSAGES + " VALUES(" + id + ", '" + msg + "')";
     }
 
     @Override
@@ -50,11 +60,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void createMessage(String messageName) {
+    public void createMessage(String msg) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_MESSAGES_NAME, messageName);
+        values.put(KEY_MESSAGES_NAME, msg);
 
         db.insert(TABLE_MESSAGES, null, values);
         db.close();
