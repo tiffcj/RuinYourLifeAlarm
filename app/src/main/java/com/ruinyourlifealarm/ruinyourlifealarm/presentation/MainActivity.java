@@ -1,4 +1,4 @@
-package com.ruinyourlifealarm.ruinyourlifealarm.presentation;
+package com.ruinyourlifealarm.ruinyourlifealarm;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,8 +14,9 @@ import android.telephony.SmsManager;
 import java.util.ArrayList;
 import android.support.v4.app.ActivityCompat;
 import com.ruinyourlifealarm.ruinyourlifealarm.presentation.NewAlarmActivity;
-import com.ruinyourlifealarm.ruinyourlifealarm.R;
 import android.content.Intent;
+
+import com.ruinyourlifealarm.ruinyourlifealarm.persistence.DatabaseHandler;
 
 public class MainActivity extends AppCompatActivity {
     static EditText textBox;
@@ -61,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
         ActivityCompat.requestPermissions(this,new String[]{android.Manifest.permission.SEND_SMS},1);
 
+        DatabaseHandler db = new DatabaseHandler(this);
+        Main.setDatabase(db);
     }
 
 
@@ -73,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), NewAlarmActivity.class);
         startActivity(intent);
 
+
+        DatabaseHandler db = new DatabaseHandler(this);
+        Main.setDatabase(db);
     }
 
     @Override
