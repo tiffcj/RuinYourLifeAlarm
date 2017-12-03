@@ -18,19 +18,24 @@ public class AccessAlarms {
     }
 
 //    public void createAlarm(int messageId, String recipientPhoneNumber, Time alarmTime) {
-//
+//        database.createAlarm(messageId, recipientPhoneNumber, alarmTime);
 //    }
 //
 //    public void createAlarm(String customMessage, String recipientPhoneNumber, Time alarmTime) {
-//        int msgId = (int)(database.createMessage(customMessage));
-//        createAlarm(msgId, recipientPhoneNumber, alarmTime);
+//        int messageId = (int)(database.createMessage(customMessage));
+//        createAlarm(messageId, recipientPhoneNumber, alarmTime);
 //    }
 
     public int createAlarm(String message, String recipientPhoneNumber, Calendar alarmTime, boolean alarmIsOn) {
+        //Inserting into the database returns the id of the just inserted row
         return ((int)database.createAlarm(message, recipientPhoneNumber, alarmTime, alarmIsOn));
     }
 
     public Alarm getAlarm(int id) {
         return database.getAlarm(id);
+    }
+
+    public void updateAlarm(int id, String message, String recipientPhoneNumber, Calendar alarmTime, boolean alarmIsOn) {
+        database.updateAlarm(id, message, recipientPhoneNumber, alarmTime, alarmIsOn);
     }
 }

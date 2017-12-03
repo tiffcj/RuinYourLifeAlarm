@@ -88,7 +88,19 @@ public class MainActivity extends AppCompatActivity {
         Log.d("blah3", ""+a.getAlarmTime().get(Calendar.DATE));
         Log.d("blah3", ""+a.getAlarmTime().get(Calendar.HOUR));
         Log.d("blah3", ""+a.getAlarmTime().get(Calendar.MINUTE));
+        Log.d("blah4", a.getAlarmIsOn()+"");
 
+        c.set(2017, 12, 6, 2, 56);
+        aa.updateAlarm(id, "test message UPDATED", "1234567", c, false);
+
+        a = aa.getAlarm(id);
+        Log.d("blah", a.getMessage());
+        Log.d("blah2", a.getRecipientPhoneNumber());
+        Log.d("blah3", ""+a.getAlarmTime().get(Calendar.YEAR));
+        Log.d("blah3", ""+a.getAlarmTime().get(Calendar.MONTH));
+        Log.d("blah3", ""+a.getAlarmTime().get(Calendar.DATE));
+        Log.d("blah3", ""+a.getAlarmTime().get(Calendar.HOUR));
+        Log.d("blah3", ""+a.getAlarmTime().get(Calendar.MINUTE));
         Log.d("blah4", a.getAlarmIsOn()+"");
     }
 

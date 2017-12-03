@@ -146,14 +146,26 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
 
         long id = db.insert(TABLE_ALARMS, null, values);
-        Log.d("", ""+id);
         db.close();
 
         return id;
     }
 
-    public void updateAlarm(String message, String recipientPhoneNumber, Calendar alarmTime, Boolean alarmIsOn) {
+    public void updateAlarm(int id, String message, String recipientPhoneNumber, Calendar alarmTime, Boolean alarmIsOn) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put(KEY_ALARMS_MESSAGE_ID, message);
+        values.put(KEY_ALARMS_RECIPIENT_PHONE_NUMBER, recipientPhoneNumber);
+        values.put(KEY_ALARMS_ALARM_TIME, convertCalendarToString(alarmTime));
+
+        if (alarmIsOn) {
+            values.put(KEY_ALARMS_ALARM_IS_ON, 1);
+        } else {
+            values.put(KEY_ALARMS_ALARM_IS_ON, 0);
+        }
+
+        db.update(TABLE_ALARMS, values, KEY_ALARMS_ID + " = ?", new String[] { String.valueOf(id) });
     }
 
     public Alarm getAlarm(int id) {
