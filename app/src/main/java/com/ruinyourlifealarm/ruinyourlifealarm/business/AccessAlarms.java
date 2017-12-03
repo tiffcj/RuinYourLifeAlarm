@@ -12,9 +12,11 @@ import java.util.Calendar;
 
 public class AccessAlarms {
     private DatabaseHandler database;
+    private AccessMessages accessMessages;
 
     public AccessAlarms(DatabaseHandler database) {
         this.database = database;
+        this.accessMessages = new AccessMessages(database);
     }
 
 //    public void createAlarm(int messageId, String recipientPhoneNumber, Time alarmTime) {
@@ -22,7 +24,7 @@ public class AccessAlarms {
 //    }
 //
 //    public void createAlarm(String customMessage, String recipientPhoneNumber, Time alarmTime) {
-//        int messageId = (int)(database.createMessage(customMessage));
+//        int messageId = accessMessages.createCustomMessage(customMessage);
 //        createAlarm(messageId, recipientPhoneNumber, alarmTime);
 //    }
 

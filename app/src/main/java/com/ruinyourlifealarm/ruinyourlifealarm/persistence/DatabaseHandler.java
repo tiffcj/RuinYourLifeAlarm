@@ -5,13 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by tiffanyjiang on 2017-12-02.
@@ -68,7 +65,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     //Messages
 
-    public long createMessage(String msg) {
+    public int createMessage(String msg) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -77,7 +74,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         long id = db.insert(TABLE_MESSAGES, null, values);
         db.close();
 
-        return id;
+        return (int)id;
     }
 
     public Message getMessage(int id) {

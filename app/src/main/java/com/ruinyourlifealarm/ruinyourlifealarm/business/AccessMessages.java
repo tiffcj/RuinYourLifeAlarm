@@ -16,11 +16,15 @@ public class AccessMessages {
         this.database = database;
     }
 
-    public void createCustomMessage(String messageName) {
-        database.createMessage(messageName);
+    public int createCustomMessage(String messageName) {
+        return database.createMessage(messageName);
     }
 
     public List<Message> getAllMessages() {
         return database.getAllMessages();
+    }
+
+    public Message getMessage(int id) {
+        return database.getMessage(id);
     }
 }
