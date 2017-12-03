@@ -11,12 +11,14 @@ public class Alarm {
     private String message;
     private String recipientPhoneNumber;
     private Calendar alarmTime;
+    private boolean alarmIsOn;
 
-    public Alarm(int id, String message, String recipientPhoneNumber, Calendar alarmTime) {
+    public Alarm(int id, String message, String recipientPhoneNumber, Calendar alarmTime, boolean alarmIsOn) {
         this.id = id;
         this.message = message;
         this.recipientPhoneNumber = recipientPhoneNumber;
         this.alarmTime = alarmTime;
+        this.alarmIsOn = alarmIsOn;
     }
 
     public int getId() {
@@ -51,6 +53,13 @@ public class Alarm {
         this.alarmTime = alarmTime;
     }
 
+    public boolean isAlarmIsOn() {
+        return alarmIsOn;
+    }
+
+    public void setAlarmIsOn(boolean alarmIsOn) {
+        this.alarmIsOn = alarmIsOn;
+    }
 //    public int getId() {
 //        return id;
 //    }

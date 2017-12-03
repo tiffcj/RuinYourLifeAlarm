@@ -2,7 +2,7 @@ package com.ruinyourlifealarm.ruinyourlifealarm.business;
 
 import com.ruinyourlifealarm.ruinyourlifealarm.persistence.Alarm;
 import com.ruinyourlifealarm.ruinyourlifealarm.persistence.DatabaseHandler;
-//import com.ruinyourlifealarm.ruinyourlifealarm.persistence.Message;
+import com.ruinyourlifealarm.ruinyourlifealarm.persistence.Message;
 
 import java.util.Calendar;
 
@@ -26,7 +26,7 @@ public class AccessAlarms {
 //        createAlarm(msgId, recipientPhoneNumber, alarmTime);
 //    }
 
-    public void createAlarm(String message, String recipientPhoneNumber, Calendar alarmTime) {
+    public void createAlarm(String message, String recipientPhoneNumber, Calendar alarmTime, boolean alarmIsOn) {
         //TODO
     }
 
