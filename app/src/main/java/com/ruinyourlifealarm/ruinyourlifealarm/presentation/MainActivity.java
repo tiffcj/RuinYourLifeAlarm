@@ -5,7 +5,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.telephony.SmsManager;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import android.support.v4.app.ActivityCompat;
 
@@ -21,9 +19,6 @@ import com.ruinyourlifealarm.ruinyourlifealarm.Main;
 import com.ruinyourlifealarm.ruinyourlifealarm.R;
 import android.content.Intent;
 
-import com.ruinyourlifealarm.ruinyourlifealarm.business.AccessAlarms;
-import com.ruinyourlifealarm.ruinyourlifealarm.business.AccessMessages;
-import com.ruinyourlifealarm.ruinyourlifealarm.persistence.Alarm;
 import com.ruinyourlifealarm.ruinyourlifealarm.persistence.DatabaseHandler;
 
 public class MainActivity extends AppCompatActivity {
