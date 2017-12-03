@@ -60,14 +60,33 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void createMessage(String msg) {
+    //Messages
+
+    public long createMessage(String msg) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(KEY_MESSAGES_NAME, msg);
 
-        db.insert(TABLE_MESSAGES, null, values);
+        long id = db.insert(TABLE_MESSAGES, null, values);
         db.close();
+
+        return id;
+    }
+
+    public Message getMessage(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_MESSAGES, new String[] { KEY_MESSAGES_ID,
+                        KEY_MESSAGES_NAME }, KEY_MESSAGES_ID + "=?",
+                new String[] { String.valueOf(id) }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Message msg = new Message(Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1));
+
+        return msg;
     }
 
     public List<Message> getAllMessages() {
@@ -87,5 +106,30 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
 
         return messageList;
+    }
+
+    //Alarms
+
+    public long createAlarm(int messageId, String recipientPhoneNumber, Time alarmTime) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_ALARMS_MESSAGE_ID, messageId);
+        values.put(KEY_ALARMS_RECIPIENT_PHONE_NUMBER, recipientPhoneNumber);
+        values.put(KEY_ALARMS_ALARM_TIME, alarmTime.toString());
+
+        long id = db.insert(TABLE_MESSAGES, null, values);
+        db.close();
+
+        return id;
+    }
+
+    public void getAlarm(int id) {
+
+    }
+
+    //TODO once we have >1 alarm
+    public List<Alarm> getAllAlarms() {
+        return null;
     }
 }
