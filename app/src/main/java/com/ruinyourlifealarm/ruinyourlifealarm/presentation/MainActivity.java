@@ -78,10 +78,6 @@ public class MainActivity extends AppCompatActivity {
     public void onNewAlarmButtonClicked(){
         Intent intent = new Intent(getApplicationContext(), NewAlarmActivity.class);
         startActivity(intent);
-
-
-        DatabaseHandler db = new DatabaseHandler(this);
-        Main.setDatabase(db);
     }
 
     @Override
