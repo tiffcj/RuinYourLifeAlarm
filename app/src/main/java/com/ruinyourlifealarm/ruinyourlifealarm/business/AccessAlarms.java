@@ -26,12 +26,11 @@ public class AccessAlarms {
 //        createAlarm(msgId, recipientPhoneNumber, alarmTime);
 //    }
 
-    public void createAlarm(String message, String recipientPhoneNumber, Calendar alarmTime, boolean alarmIsOn) {
-        //TODO
+    public int createAlarm(String message, String recipientPhoneNumber, Calendar alarmTime, boolean alarmIsOn) {
+        return ((int)database.createAlarm(message, recipientPhoneNumber, alarmTime, alarmIsOn));
     }
 
     public Alarm getAlarm(int id) {
-        //TODO
-        return null;
+        return database.getAlarm(id);
     }
 }

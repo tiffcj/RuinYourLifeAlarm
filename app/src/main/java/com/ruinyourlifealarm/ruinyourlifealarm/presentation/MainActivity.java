@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,12 +13,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.telephony.SmsManager;
 import java.util.ArrayList;
+import java.util.Calendar;
+
 import android.support.v4.app.ActivityCompat;
 
 import com.ruinyourlifealarm.ruinyourlifealarm.Main;
 import com.ruinyourlifealarm.ruinyourlifealarm.R;
 import android.content.Intent;
 
+import com.ruinyourlifealarm.ruinyourlifealarm.business.AccessAlarms;
+import com.ruinyourlifealarm.ruinyourlifealarm.business.AccessMessages;
+import com.ruinyourlifealarm.ruinyourlifealarm.persistence.Alarm;
 import com.ruinyourlifealarm.ruinyourlifealarm.persistence.DatabaseHandler;
 
 public class MainActivity extends AppCompatActivity {
@@ -66,6 +72,24 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseHandler db = new DatabaseHandler(this);
         Main.setDatabase(db);
+
+
+        AccessAlarms aa = new AccessAlarms(Main.getDatabase());
+        Calendar c = Calendar.getInstance();
+        c.set(2017, 11, 3, 11, 30);
+        int id = aa.createAlarm("test message", "12345", c, true);
+
+        Alarm a = aa.getAlarm(id);
+        Log.d("blah", a.getMessage());
+        Log.d("blah2", a.getRecipientPhoneNumber());
+//        Log.d("blah3", a.getAlarmTime().toString());
+        Log.d("blah3", ""+a.getAlarmTime().get(Calendar.YEAR));
+        Log.d("blah3", ""+a.getAlarmTime().get(Calendar.MONTH));
+        Log.d("blah3", ""+a.getAlarmTime().get(Calendar.DATE));
+        Log.d("blah3", ""+a.getAlarmTime().get(Calendar.HOUR));
+        Log.d("blah3", ""+a.getAlarmTime().get(Calendar.MINUTE));
+
+        Log.d("blah4", a.getAlarmIsOn()+"");
     }
 
 

@@ -53,7 +53,7 @@ public class Alarm {
         this.alarmTime = alarmTime;
     }
 
-    public boolean isAlarmIsOn() {
+    public boolean getAlarmIsOn() {
         return alarmIsOn;
     }
 
