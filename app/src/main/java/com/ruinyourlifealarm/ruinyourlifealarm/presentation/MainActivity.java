@@ -12,11 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.telephony.SmsManager;
 import java.util.ArrayList;
+
 import android.support.v4.app.ActivityCompat;
 
 import com.ruinyourlifealarm.ruinyourlifealarm.Main;
 import com.ruinyourlifealarm.ruinyourlifealarm.R;
-import com.ruinyourlifealarm.ruinyourlifealarm.presentation.NewAlarmActivity;
 import android.content.Intent;
 
 import com.ruinyourlifealarm.ruinyourlifealarm.persistence.DatabaseHandler;
